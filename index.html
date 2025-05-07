@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Tailwind & Daisy UIs -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Style -->
+     <style>
+        html{
+            scroll-behavior:smooth;
+        }
+
+        .code{
+            display: none;
+        }
+
+        
+     </style>
+
+</head>
+<body>
+
+    <header>
+
+        <!-- nav_1 -->
+        <nav id="nav" class="border-b-2  border-[#C6BDBD] code ">
+            <div class="navbar fixed bg-[#C6BDBD20] backdrop-blur-lg  flex justify-between px-16 z-20">
+                <div class="icon">
+                 
+                  <a class="text-lg flex items-center hover:cursor-pointer">
+                    <span class="font-bold">English</span><img class="w-fit" src="assets/logo.png" alt="">জানালা
+                  </a>
+
+                </div>
+               
+                <div id="hamburger-container" class="nav-buttons hidden flex flex-col md:flex  md:flex-row">
+                  <a href="#faq" class="   mx-1  btn btn-outline btn-primary"> <img class="w-fit" src="assets/fa-circle-question.png" alt=""> Faq</a>
+                  <a href="#learn" class=" mx-1  btn btn-outline btn-primary"> <img class="w-fit" src="assets/fa-book-open.png" alt=""> Learn</a>
+                  <button onclick="logOut()" class="btn btn-outline btn-primary">
+                    <img src="assets/fa-arrow-right-from-bracket.png" alt=""> Logout
+                  </button>
+                </div>
+
+                <button onclick="hamburger()" id="hamburger" class="btn md:hidden">
+<img class="w-4" src="https://img.icons8.com/?size=100&id=SWWMhXQSYF68&format=png&color=000000" alt="">
+                </button>
+              </div>
+        </nav>
+
+        <!-- Hero -->
+         <section class="w-11/12 h-screen mt-12 md:mt-0 flex flex-col md:flex-row  items-center mx-auto">
+            
+            <!-- Input -->
+             <div>
+    
+                <div class="1/2">
+                    <h1 class="text-4xl font-bold  my-4">
+                        <span class="text-blue-400">English</span> is Easy!!!
+                    </h1>
+        
+                    <p class="font-sm text-gray-800 my-4">
+                        আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
+                    </p>
+                </div>
+    
+                <div class="w-[320px]">
+                    <fieldset class="fieldset">
+                        <legend class="fieldset-legend">What is your name?</legend>
+                        <input id="input" type="text" class="input" value="Type here" />
+                        
+                      </fieldset>
+    
+                      <fieldset class="fieldset">
+                        <legend class="fieldset-legend">What is your name?</legend>
+                        <input id="password" type="password" class="input" value="123456" />
+                        
+                      </fieldset>
+    
+                      <button id="GetStartedBtn" class="btn btn-primary">
+                        Get Started
+                      </button>
+                </div>
+    
+             </div>
+
+             <!--Img -->
+             <div class="1/2">
+                <img class="w-fit" src="assets/hero-student.png" alt="">
+             </div>
+
+         </section>
+
+    </header>
+
+    <main>
+      
+
+      <!-- Lets Learn Vocabularies -->
+      <section id="learn" class="code flex flex-col justify-center items-center w-11/12 mx-auto">
+
+        <!-- Text -->
+        <div class="text-3xl font-bold my-4">
+          <span class="text-blue-400">Let's</span> Learn Vocabularies
+        </div>
+
+        <!-- Levels -->
+        <div class="flex gap-2 my-6 " id="level-container">
+          <!-- <button class="btn btn-primary btn-outline"> <img class="w-4" src="assets/fa-book-open.png" alt="">Lesson - ${}</button> -->
+        </div>
+
+        <!-- Select Lesson -->
+        <div class="bg-[#F8F8F8] w-full h-auto rounded-md drop-shadow-sm flex items-center justify-center">
+
+          <!-- Unselected Display -->
+           <div id="unselcted-display" class="h-[240px] flex flex-col justify-center" >
+            <p class="text-gray-500  my-1 text-sm">আপনি এখনো কোন Lesson Select করেন ন</p>
+            <h1 class="text-xl font-bold  my-1 ">একটি Lesson Select করুন।</h1>
+           </div>
+
+           <!-- Selected Display -->
+            <div>
+              <div id="selected-display" class="grid grid-cols-3 hidden gap-3">
+                <!-- <div class="card bg-white text-neutral-content w-[auto]">
+                  <div class="card-body items-center text-center">
+                    <h2 class="card-title">${printedWord}</h2>
+                    <p>Meaning /Pronounciation</p>
+                    <div class="card-actions justify-end">
+                      <button class="btn">
+                        <img src="https://img.icons8.com/?size=100&id=77&format=png&color=000000" alt="speaker">
+                      </button>
+                      <button class="btn">
+                        <img src="https://icons8.com/icon/11408/speaker" alt="info">
+                      </button>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+
+            <!-- Empty Display -->
+            <div id="empty-display" class="h-[240px] flex flex-col justify-center text-center hidden" >
+              <img class="w-1/4 " src="assets/alert-error.png" alt="">
+              <p class="text-gray-500  my-1 text-sm">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+              <h1 class="text-xl font-bold  my-1 ">নেক্সট Lesson এ যান</h1>
+             </div>
+
+        </div>
+
+      </section>
+
+      <!-- FAQ -->
+       <section id="faq" class="flex flex-col justify-center items-center mx-auto w-11/12 bg-white code my-12">
+ 
+        <h1 class="font-bold text-3xl my-4 "><span class="text-blue-400">Frequently</span> Asked Questions</h1>
+
+        <!-- accordion -->
+        <div class="collapse collapse-arrow my-2 bg-[#F8F8F8] border border-base-300 w-full h-auto">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title font-semibold">1. How can I start learning English on this website?</div>
+          <div class="collapse-content text-sm">By pressing the Learn after logging in Button and opening the levels</div>
+        </div>
+        <div class="collapse collapse-arrow my-2 bg-[#F8F8F8] border border-base-300 w-full h-auto">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title font-semibold">2. Is this website free to use?</div>
+          <div class="collapse-content text-sm">yes</div>
+        </div>
+        <div class="collapse collapse-arrow my-2 bg-[#F8F8F8] border border-base-300 w-full h-auto">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title font-semibold">3.  Do I need to create an account?</div>
+          <div class="collapse-content text-sm">yes</div>
+        </div>
+        <div class="collapse collapse-arrow my-2 bg-[#F8F8F8] border border-base-300 w-full h-auto">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title font-semibold">4. How can I build my English vocabulary?</div>
+          <div class="collapse-content text-sm">practice</div>
+        </div>
+        <div class="collapse collapse-arrow my-2 bg-[#F8F8F8] border border-base-300 w-full h-auto">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title font-semibold">5. Do you offer certificates for completed courses?</div>
+          <div class="collapse-content text-sm">yes</div>
+        </div>
+        
+
+
+       </section>
+
+    </main>
+
+    <footer id="footer" class="text-sm flex justify-between items-center px-8 py-20 border-t-2 border-[#FFEBEB]">
+
+        <div class="w-[317px]">
+            <a class="text-lg flex items-center hover:cursor-pointer">
+            <span class="font-bold">English</span><img class="w-fit" src="assets/logo.png" alt="">জানালা
+          </a>
+
+          <br>
+          ইংরেজি শিখুন সহজে
+
+          <br>
+         <p class="text-gray-400"> Providing ED-Tech Applications since 2025</p>
+        </div>
+
+        <div>
+            <p class="text-gray-500 font-bold">Follow Us On</p>
+            <div class="flex items-center">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img class="w-10" src="https://img.icons8.com/ios-filled/50/000000/facebook.png" alt="Facebook">
+                  </a>
+                  
+                  <a href="https://www.instagram.com" target="_blank">
+                    <img class="w-10" src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png" alt="Instagram">
+                  </a>
+                  
+                  <a href="https://www.youtube.com" target="_blank">
+                    <img class="w-12" src="https://img.icons8.com/ios-filled/50/000000/youtube-play.png" alt="YouTube">
+                  </a>
+            </div>
+        </div>
+
+        
+        
+    </footer>
+
+    <script src="script/fetch.js"></script>
+    <script src="script/hamburger.js" ></script>
+    <script src="script/verification.js"></script>
+    
+
+    
+</body>
+</html>
+
+
